@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="admin.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <section class="home-section">
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Views</div>
+                        <div class="number views">Loading...</div>
+                        <div class="indicator">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span class="text">Update From Today</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total user</div>
+                        <div class="number">{{countuser}}</div>
+                        <div class="indicator">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span class="text">Update From Today</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Doctor</div>
+                        <div class="number">{{countdoctor}}</div>
+                        <div class="indicator">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span class="text">Update From Today</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Admin</div>
+                        <div class="number">{{countadmin}}</div>
+                        <div class="indicator">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span class="text">Update From Today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accounts-boxes">
+                <div class="recent-accounts box">
+                    <div class="title"><b>Recently registered account</b></div>
+                    <div class="accounts-details">
+                        <ul class="details">
+                            <li class="topic"><b>Account</b> </li>
+                            {{#each users as |value key|}}
+
+                            <li><a href="#">{{this.account}}</a></li>
+
+                            {{/each}}
+                        </ul>
+                        <ul class="details">
+                            <li class="topic"><b>User name</b></li>
+                            {{#each users}}
+                            <li><a href="#">{{this.name}}</a></li>
+                            {{/each}}
+                        </ul>
+                        <ul class="details">
+                            <li class="topic"><b>role</b></li>
+                            {{#each users}}
+                            <li><a href="/admin" class="role">{{changerole this.role}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{!-- <div class="button">
+                        <a href="#">See All</a>
+                    </div> --}}
+                </div>
+                <div class="recent-feedbacks box">
+                    <div class="title"><b>recently feedbacks</b></div>
+                    <ul class="recent-feedbacks-details">
+                        {{#each feedbacks}}
+                        <li>
+                            <span class="name"> {{this.username}} ({{changerole this.userrole}}): {{this.content}}</span>
+                            {{!-- <span class="feedback"></span> --}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="home-content">
+            <div class="schedule"  >
+                <h1>Schedule</h1>
+                {{#each schedules}}
+                <div class="handle{{this._id}}" onmouseover="checkClass('{{this._id}}')">
+                  <div class="schedule-box" >
+                    <p>Account: {{this.accountuser}}</p>
+                    <p>Doctor name: {{this.doctorname}}</p>
+                    <button class="btn-1">Detail</button>
+                    <button class="btn-2">Delete</button>
+                    <div class="clear-schedule" >
+                        <h3>Do you want to clear this schedule?</h3>
+                        <button class="clear-1" onclick="removeSchedule('{{this._id}}')">Remove</button>
+                        <button class="clear-2">Cancel</button>
+                    </div>
+                    </div>
+                    <div class="schedule-detail">
+                        <p>Username: {{this.username}}</p>
+                        <p>Patient: {{this.for}}</p>
+                        <p>Phone: {{this.phone}}</p>
+                        <p>Address: {{this.address}}</p>
+                        <p>Time: {{this.timeday}} ({{this.timehours}})</p>
+                        <p>Email: {{this.email}}</p>
+                    </div>  
+                </div>
+                
+                {{/each}}
+                
+                
+            </div>
+        </div>
+    </section>
+    {{!-- <script src="/css/adminpage.css"></script> --}}
+</body>
+
+</html>
